@@ -55,6 +55,8 @@ resource "azurerm_kubernetes_cluster" "main" {
     }
   }
 
+  node_resource_group = "${var.name}-nodes"
+
   service_principal {
     client_id     = var.client_id
     client_secret = var.client_secret
