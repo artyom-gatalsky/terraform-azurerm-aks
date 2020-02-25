@@ -1,5 +1,6 @@
 provider "azurerm" {
-  version = ">= 1.32.0"
+  version = ">= 2.0.0"
+  features {}
 }
 
 data "azurerm_resource_group" "main" {
@@ -35,20 +36,16 @@ resource "azurerm_kubernetes_cluster" "main" {
 
   kubernetes_version = var.kubernetes_version
 
-  agent_pool_profile {
-    name            = "default"
-    count           = 1
-    vm_size         = var.vm_size
-    vnet_subnet_id  = data.azurerm_subnet.main.id
-    os_type         = "Linux"
-    os_disk_size_gb = var.os_disk_size_gb
-
-    type                = "VirtualMachineScaleSets"
+  default_node_pool {
+    name                = "default"
+    vm_size             = var.vm_size
     enable_auto_scaling = true
-
-    min_count = var.min_count
-    max_count = var.max_count
-    max_pods  = var.max_pods
+    type                = "VirtualMachineScaleSets"
+    min_count           = var.min_count
+    max_count           = var.max_count
+    max_pods            = var.max_pods
+    vnet_subnet_id      = data.azurerm_subnet.main.id
+    os_disk_size_gb     = var.os_disk_size_gb
   }
 
   linux_profile {
