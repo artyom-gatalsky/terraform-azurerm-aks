@@ -72,3 +72,8 @@ variable "rbac" {
   description = "enable or disable RBAC for kubernetes cluster"
   default     = "disabled"
 }
+
+variable "dashboard" {
+  description = "enable or disable Kubernetes Dashboard for kubernetes cluster"
+  default     = "disabled"
+}

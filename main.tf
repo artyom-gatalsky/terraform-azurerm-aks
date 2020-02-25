@@ -67,6 +67,10 @@ resource "azurerm_kubernetes_cluster" "main" {
     network_plugin = "azure"
   }
 
+  kube_dashboard {
+    enabled        = var.dashboard
+  }
+
   role_based_access_control {
     enabled        = var.rbac
   }
