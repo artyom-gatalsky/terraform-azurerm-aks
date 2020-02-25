@@ -67,6 +67,10 @@ resource "azurerm_kubernetes_cluster" "main" {
     network_plugin = "azure"
   }
 
+  role_based_access_control {
+    enabled        = var.rbac
+  }
+
   tags = {
     environment = var.tag_environment
   }

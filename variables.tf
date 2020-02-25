@@ -67,3 +67,8 @@ variable "tag_environment" {
   description = "Environment name for tagging"
   default     = "development"
 }
+
+variable "rbac" {
+  description = "enable or disable RBAC for kubernetes cluster"
+  default     = "disabled"
+}
