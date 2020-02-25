@@ -1,5 +1,6 @@
 provider "azurerm" {
-  version = "=1.36.0"
+  version = ">= 2.0.0"
+  features {}
 }
 
 data "azurerm_resource_group" "main" {
@@ -67,12 +68,14 @@ resource "azurerm_kubernetes_cluster" "main" {
     network_plugin = "azure"
   }
 
-  kube_dashboard {
-    enabled        = var.dashboard
+  addon_profile {
+    kube_dashboard {
+      enabled = var.dashboard
+    }
   }
 
   role_based_access_control {
-    enabled        = var.rbac
+    enabled = var.rbac
   }
 
   tags = {
